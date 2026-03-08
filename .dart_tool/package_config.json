@@ -371,10 +371,10 @@
       "name": "dart_react_todo",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.11"
+      "languageVersion": "3.0"
     }
   ],
-  "generated": "2026-03-07T18:00:35.049736Z",
   "generator": "pub",
-  "generatorVersion": "2.19.6"
+  "generatorVersion": "3.11.1",
+  "pubCache": "file:///Users/brettharper/.pub-cache"
 }

@@ -2,8 +2,17 @@ import 'package:react/react.dart' as react;
 
 var TodoApp = react.registerComponent(() => new _TodoApp());
 
-class _TodoApp extends react.Component {
-  @override
+// Legacy Dart 2 React pattern: Using abstract classes as mixins for lifecycle hooks
+abstract class LifecycleLogger {
+  void componentWillMount() {
+    print("Component will mount...");
+  }
+}
+
+class _TodoApp extends react.Component with LifecycleLogger {
+  // Legacy Dart 2 pattern: uninitialized non-nullable types
+  String defaultText;
+  int clickCount;
   Map getInitialState() => {
     'todos': [
       {'id': 1, 'text': 'Learn Dart', 'completed': true},
@@ -18,9 +27,15 @@ class _TodoApp extends react.Component {
     if (newTodoText.trim().isEmpty) return;
 
     List todos = new List.from(state['todos']);
+    
+    // Legacy Dart 2 pattern: optional parameter without null safety
+    String formatTodoText([String prefix]) {
+      return prefix + ": " + newTodoText;
+    }
+    
     todos.add({
       'id': new DateTime.now().millisecondsSinceEpoch,
-      'text': newTodoText,
+      'text': formatTodoText("Task"),
       'completed': false
     });
 
