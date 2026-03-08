@@ -89,16 +89,31 @@ Analyzing lib, web...                  0.4s
    Press `Cmd + ,` (Mac) or `Ctrl + ,` (Windows/Linux) to open the Cursor Settings menu.
 2. **Navigate to Features -> MCP:**
    In the left-hand sidebar of the settings menu, look for "Features" and then click on "MCP" (Model Context Protocol).
-3. **Add a New MCP Server:**
-   Click the **"+ Add New MCP Server"** button.
-4. **Configure the Server Details:**
-   Fill out the modal with the following details:
-   *   **Name:** `dart-tooling`
-   *   **Type:** Select `command`
-   *   **Command:** Enter the following exact command (using the absolute path to the global Dart 3 instance):
-       `/opt/homebrew/opt/dart/libexec/bin/dart mcp-server`
+
+![Cursor MCP Settings pane showing 'No MCP Tools' and an 'Add Custom MCP' button](/Users/brettharper/.gemini/antigravity/brain/89f406e3-7ee7-4375-aada-76c4f2850400/media__1772989523365.png)
+
+3. **Configure the Server via JSON:**
+   Click the **"Add Custom MCP"** button (as shown in the screenshot above). This will open the `<project-root>/.cursor/mcp.json` file.
+4. **Paste the Configuration Payload:**
+   Replace the default `{ "mcpServers": {} }` content with the exact absolute path to your global Dart 3 installation daemon:
+
+```json
+{
+  "mcpServers": {
+    "dart-tooling": {
+      "command": "/opt/homebrew/opt/dart/libexec/bin/dart",
+      "args": [
+        "mcp-server"
+      ]
+    }
+  }
+}
+```
+
 5. **Save and Verify:**
-   Click "Save". Cursor should show a green indicator next to the `dart-tooling` server, confirming it is connected and tools are available.
+   Save the file. Return to the MCP settings pane; Cursor should now show a green indicator next to the `dart-tooling` server, confirming it is connected.
+
+![Cursor MCP Settings pane showing the dart-tooling MCP server with a green circle indicating a successful connection and tools enabled](/Users/brettharper/.gemini/antigravity/brain/89f406e3-7ee7-4375-aada-76c4f2850400/media__1772989752574.png)
 
 ### Agent Testing Workflow
 
